@@ -1,10 +1,10 @@
-package br.com.samueloliveira.CadastroDeNinjas.model.entity;
+package br.com.samueloliveira.CadastroDeNinjas.ninjas;
 
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tb_cadastro_ninjas")
-public class NinjaEntity {
+public class NinjaDomain {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -13,10 +13,10 @@ public class NinjaEntity {
     private int idade;
     private String email;
 
-    public NinjaEntity(){
+    public NinjaDomain(){
     }
 
-    public NinjaEntity(String nome, int idade, String email) {
+    public NinjaDomain(String nome, int idade, String email) {
         this.nome = nome;
         this.idade = idade;
         this.email = email;
