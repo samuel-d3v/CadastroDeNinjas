@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tb_cadastro_ninjas")
-public class NinjaDomain {
+public class NinjaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -13,10 +13,10 @@ public class NinjaDomain {
     private int idade;
     private String email;
 
-    public NinjaDomain(){
+    public NinjaModel(){
     }
 
-    public NinjaDomain(String nome, int idade, String email) {
+    public NinjaModel(String nome, int idade, String email) {
         this.nome = nome;
         this.idade = idade;
         this.email = email;
