@@ -1,5 +1,6 @@
 package br.com.samueloliveira.CadastroDeNinjas.ninjas;
 
+import br.com.samueloliveira.CadastroDeNinjas.missoes.MissionModel;
 import jakarta.persistence.*;
 
 @Entity
@@ -7,11 +8,14 @@ import jakarta.persistence.*;
 public class NinjaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String nome;
     private int idade;
     private String email;
+    @ManyToOne
+    @JoinColumn(name = "missao_id")
+    private MissionModel missao;
 
     public NinjaModel(){
     }
@@ -21,6 +25,7 @@ public class NinjaModel {
         this.idade = idade;
         this.email = email;
     }
+
     public String getNome() {
         return nome;
     }
