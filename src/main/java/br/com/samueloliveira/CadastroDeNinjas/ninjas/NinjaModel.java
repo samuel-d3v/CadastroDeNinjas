@@ -17,6 +17,8 @@ public class NinjaModel {
 
     private String nome;
     private int idade;
+
+    @Column(unique = true)
     private String email;
     @ManyToOne
     @JoinColumn(name = "missao_id")
