@@ -18,7 +18,7 @@ public class MissionModel {
     private Long id;
     private String nome;
     private Dificuldade rank;
-    @OneToMany(mappedBy = "missoes")
+    @OneToMany(mappedBy = "missao")
     private List<NinjaModel> ninjas;
 
 }
