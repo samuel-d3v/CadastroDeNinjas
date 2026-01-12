@@ -17,6 +17,7 @@ public class MissionModel {
     @Setter(AccessLevel.NONE)
     private Long id;
     private String nome;
+    @Enumerated(EnumType.STRING)
     private Dificuldade rank;
     @OneToMany(mappedBy = "missao")
     private List<NinjaModel> ninjas;
