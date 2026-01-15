@@ -1,6 +1,7 @@
 package br.com.samueloliveira.CadastroDeNinjas.missoes;
 
 import br.com.samueloliveira.CadastroDeNinjas.ninjas.NinjaModel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,6 +21,7 @@ public class MissionModel {
     @Enumerated(EnumType.STRING)
     private Dificuldade rank;
     @OneToMany(mappedBy = "missao")
+    @JsonIgnore
     private List<NinjaModel> ninjas;
 
 }
