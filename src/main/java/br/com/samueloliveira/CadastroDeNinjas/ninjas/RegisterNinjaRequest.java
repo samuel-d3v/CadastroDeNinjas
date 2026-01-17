@@ -2,5 +2,5 @@ package br.com.samueloliveira.CadastroDeNinjas.ninjas;
 
 import br.com.samueloliveira.CadastroDeNinjas.missoes.MissionModel;
 
-public record NinjaDTO(Long id, String nome, int idade, String email, String level, MissionModel missao) {
+public record RegisterNinjaRequest(String nome, int idade, String email, String level, MissionModel missao){
 }
