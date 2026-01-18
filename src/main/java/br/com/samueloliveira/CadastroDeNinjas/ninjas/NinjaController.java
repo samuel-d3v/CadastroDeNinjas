@@ -1,5 +1,6 @@
 package br.com.samueloliveira.CadastroDeNinjas.ninjas;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,28 +14,32 @@ public class NinjaController {
         this.service = service;
     }
 
-    @GetMapping("/teste")
-    public String teste(){
-        return "Teste ok";
-    }
-
     @PostMapping("/create")
-    public List<NinjaModel> createNinja(NinjaModel ninja) {
-        return service.createNinja(ninja);
+    public NinjaResponseDTO createNinja(@RequestBody RegisterNinjaRequest request) {
+        return service.createNinja(request);
     }
 
-    @GetMapping("/all")
-    public List<NinjaModel> listNinjas() {
+    @GetMapping("/list")
+    public List<NinjaResponseDTO> listNinjas() {
         return service.listNinjas();
     }
 
-    @PutMapping("/update")
-    public List<NinjaModel> updateNinja(NinjaModel ninja) {
-        return service.updateNinja(ninja);
+    @GetMapping("/list/{id}")
+    public ResponseEntity<NinjaResponseDTO> findNinjaById(@PathVariable Long id) {
+        NinjaResponseDTO ninja = service.listNinjaById(id);
+
+        return ResponseEntity.ok(ninja);
     }
 
-    @DeleteMapping("{id}")
-    public List<NinjaModel> deleteNinja(@PathVariable("id") Long id) {
-        return service.deleteNinja(id);
+    @PutMapping("/update/{id}")
+    public NinjaResponseDTO updateNinja( @PathVariable Long id, @RequestBody RegisterNinjaRequest ninja) {
+        return service.updateNinja(id, ninja);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<List<NinjaResponseDTO>> deleteNinja(@PathVariable Long id) {
+        List<NinjaResponseDTO> ninja = service.deleteNinja(id);
+
+        return ResponseEntity.ok(ninja);
     }
 }
