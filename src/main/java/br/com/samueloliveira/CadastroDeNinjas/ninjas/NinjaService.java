@@ -4,8 +4,6 @@ import br.com.samueloliveira.CadastroDeNinjas.exeptions.NinjaNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class NinjaService {
@@ -25,9 +23,6 @@ public class NinjaService {
         return ninjaMapper.toDTO(ninja);
     }
 
-    /**
-     * Lists ninjas sorted by name; throws exception if empty
-     */
     public List<NinjaResponseDTO> listNinjas(){
         List<NinjaModel> ninjas = repository.findAll();
 
