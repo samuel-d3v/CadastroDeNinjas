@@ -15,7 +15,6 @@ import java.util.List;
 public class MissionModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter(AccessLevel.NONE)
     private Long id;
     private String nome;
     @Enumerated(EnumType.STRING)

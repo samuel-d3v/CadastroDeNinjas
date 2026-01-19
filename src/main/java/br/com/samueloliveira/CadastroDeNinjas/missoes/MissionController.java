@@ -1,5 +1,6 @@
 package br.com.samueloliveira.CadastroDeNinjas.missoes;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,22 +15,29 @@ public class MissionController {
     }
 
     @PostMapping("/create")
-    public List<MissionModel> createMission(MissionModel mission) {
-        return service.createMission(mission);
+    public MissionResponseDTO createMission(@RequestBody RegisterMissionRequest missionRequest) {
+        return service.createMission(missionRequest);
     }
 
-    @GetMapping("/all")
-    public List<MissionModel> listMission() {
+    @GetMapping("/list")
+    public List<MissionResponseDTO> listMission() {
         return service.listMission();
     }
 
-    @PutMapping("/update")
-    public List<MissionModel> updateMission(MissionModel mission) {
-        return service.updateMission(mission);
+    @GetMapping ("/list/{id}")
+    public ResponseEntity<MissionResponseDTO> findMissionById(@PathVariable Long id){
+         MissionResponseDTO mission = service.findMissionById(id);
+
+        return ResponseEntity.ok(mission);
     }
 
-    @DeleteMapping("{id}")
-    public List<MissionModel> deleteMission(@PathVariable("id") Long id) {
+    @PutMapping("/update/{id}")
+    public MissionResponseDTO updateMission(@PathVariable Long id, @RequestBody RegisterMissionRequest missionRequest) {
+        return service.updateMission(id, missionRequest);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public List<MissionResponseDTO> deleteMission(@PathVariable Long id) {
         return service.deleteMission(id);
     }
 }
