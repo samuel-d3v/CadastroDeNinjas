@@ -8,8 +8,8 @@ import java.util.List;
 @Service
 public class NinjaService {
 
-    private NinjaRepository repository;
-    private NinjaMapper ninjaMapper;
+    private final NinjaRepository repository;
+    private final NinjaMapper ninjaMapper;
 
     public NinjaService(NinjaRepository repository, NinjaMapper ninjaMapper) {
         this.repository = repository;

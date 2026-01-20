@@ -7,8 +7,8 @@ import java.util.List;
 
 @Service
 public class MissionService {
-    public MissionRepository missionRepository;
-    public MissionMapper missionMapper;
+    public final MissionRepository missionRepository;
+    public final MissionMapper missionMapper;
 
     public MissionService(MissionRepository missionRepository, MissionMapper missionMapper) {
         this.missionRepository = missionRepository;
