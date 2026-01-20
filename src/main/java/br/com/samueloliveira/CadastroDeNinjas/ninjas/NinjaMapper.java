@@ -16,7 +16,8 @@ public class NinjaMapper {
                 ninjaModel.getIdade(),
                 ninjaModel.getEmail(),
                 ninjaModel.getLevel(),
-                ninjaModel.getMissao()
+                ninjaModel.getMissao(),
+                ninjaModel.getImagemUrl()
         );
     }
 
@@ -30,6 +31,7 @@ public class NinjaMapper {
         ninjaModel.setEmail(request.email());
         ninjaModel.setLevel(request.level());
         ninjaModel.setMissao(request.missao());
+        ninjaModel.setImagemUrl(request.imagemUrl());
 
         return ninjaModel;
     }

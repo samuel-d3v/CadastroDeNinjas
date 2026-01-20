@@ -11,7 +11,7 @@ import lombok.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = "missao")
+@ToString
 public class NinjaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,4 +32,7 @@ public class NinjaModel {
 
     @Column (name = "level")
     private String level;
+
+    @Column (name = "imagem_URL")
+    private String imagemUrl;
 }
