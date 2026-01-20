@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ToString (exclude = "ninjas")
 public class MissionModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
