@@ -1,6 +1,9 @@
 package br.com.samueloliveira.CadastroDeNinjas.ninjas;
 
+import br.com.samueloliveira.CadastroDeNinjas.exeptions.MissionNotFoundException;
 import br.com.samueloliveira.CadastroDeNinjas.exeptions.NinjaNotFoundException;
+import br.com.samueloliveira.CadastroDeNinjas.missoes.MissionModel;
+import br.com.samueloliveira.CadastroDeNinjas.missoes.MissionRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,14 +13,23 @@ public class NinjaService {
 
     private final NinjaRepository repository;
     private final NinjaMapper ninjaMapper;
+    private final MissionRepository missionRepository;
 
-    public NinjaService(NinjaRepository repository, NinjaMapper ninjaMapper) {
+    public NinjaService(NinjaRepository repository, NinjaMapper ninjaMapper, MissionRepository missionRepository) {
         this.repository = repository;
         this.ninjaMapper = ninjaMapper;
+        this.missionRepository = missionRepository;
     }
 
     public NinjaResponseDTO createNinja(RegisterNinjaRequest request) {
         NinjaModel ninja = ninjaMapper.toEntity(request);
+
+        MissionModel missao = missionRepository.findById(request.missaoId())
+                .orElseThrow(
+                        () -> new MissionNotFoundException("Missão não encontrada")
+                );
+
+        ninja.setMissao(missao);
         ninja = repository.save(ninja);
 
         return ninjaMapper.toDTO(ninja);
@@ -43,8 +55,15 @@ public class NinjaService {
     public NinjaResponseDTO updateNinja(Long id, RegisterNinjaRequest request) {
         listNinjaById(id);
 
+        MissionModel missao = missionRepository.findById(request.missaoId())
+                .orElseThrow(
+                        () -> new MissionNotFoundException("Missão não encontrada")
+                );
+
         NinjaModel ninja = ninjaMapper.toEntity(request);
         ninja.setId(id);
+        ninja.setMissao(missao);
+
         NinjaModel ninjaSave = repository.save(ninja);
         return ninjaMapper.toDTO(ninjaSave);
     }

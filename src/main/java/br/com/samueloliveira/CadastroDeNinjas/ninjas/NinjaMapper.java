@@ -30,9 +30,21 @@ public class NinjaMapper {
         ninjaModel.setIdade(request.idade());
         ninjaModel.setEmail(request.email());
         ninjaModel.setLevel(request.level());
-        ninjaModel.setMissao(request.missao());
         ninjaModel.setImagemUrl(request.imagemUrl());
 
         return ninjaModel;
+    }
+
+    /**
+     * Maps form to registration request object
+     */
+    public RegisterNinjaRequest toRegisterDTO(RegisterNinjaForm form) {
+        return new RegisterNinjaRequest(form.getNome(),
+            form.getIdade(),
+            form.getEmail(),
+            form.getLevel(),
+            form.getMission(),
+            form.getImagemUrl()
+        );
     }
 }
