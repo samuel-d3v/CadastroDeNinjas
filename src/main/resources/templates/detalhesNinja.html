@@ -1,0 +1,184 @@
+<!
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Detalhes do Ninja</title>
+
+    <style>
+        /* ===== Reset básico ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* ===== Página ===== */
+        body {
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 40px;
+        }
+
+        /* ===== Box ===== */
+        div {
+            display: flex;
+            flex-direction: column;
+            margin: auto;
+            width: 50%;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        img {
+            margin: auto;
+        }
+
+        h2, h3 {
+            margin: 10px 0;
+            color: #333;
+        }
+
+        p {
+            color: #333;
+        }
+
+        p:has(+p) {
+            margin-bottom: 3px;
+        }
+
+        span {
+            color: black;
+        }
+
+        /* ===== Tabela ===== */
+        table {
+            margin-bottom: 20px;
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        thead {
+            background-color: #1f2937;
+            color: #ffffff;
+        }
+
+        th, td {
+            padding: 10px 6px;
+            text-align: left;
+            vertical-align: middle;
+            font-size: 14px;
+        }
+
+        th {
+            font-weight: 600;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        tbody tr:hover {
+            background-color: #f9fafb;
+        }
+
+        /* ===== Botão ===== */
+        a {
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .btn {
+            padding: 6px 14px;
+            font-size: 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            line-height: 1.2;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.2s ease;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .btn-view {
+            background-color: #2563eb;
+            color: #fff;
+        }
+
+        .btn-view:hover {
+            background-color: #1d4ed8;
+        }
+
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center">
+        Detalhes do ninja
+    </h1>
+
+    <div>
+        <img th:src="${ninja.imagemUrl()}" th:alt="${ninja.nome()}" width="200">
+        <h2 th:text="${ninja.nome()}"></h2>
+        <p>
+            <strong>
+                Email:
+            </strong>
+            <span th:text="${ninja.email()}"></span>
+        </p>
+        <p>
+            <strong>
+                Idade:
+            </strong>
+            <span th:text="${ninja.idade()}"></span>
+        </p>
+        <p>
+            <strong>
+                Nível:
+            </strong>
+            <span th:text="${ninja.level()}"></span>
+        </p>
+        <h3>
+            Missões:
+        </h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Dificuldade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td th:text="${ninja.missao().getNome()}"></td>
+                    <td th:text="${ninja.missao().getRank()}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <a class="btn btn-view" th:href="@{/ninjas/ui/list}">Voltar para a lista de ninjas</a>
+    </div>
+</body>
+</html>

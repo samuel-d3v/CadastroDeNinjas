@@ -1,0 +1,232 @@
+<!
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <title>Listar Ninjas</title>
+
+        <style>
+            /* ===== Reset básico ===== */
+            * {
+                box-sizing: border-box;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            /* ===== Página ===== */
+            body {
+                background-color: #f4f6f8;
+                margin: 0;
+                padding: 40px;
+            }
+
+            h1 {
+                text-align: center;
+                margin-bottom: 30px;
+                color: #333;
+            }
+
+            /* ===== Tabela ===== */
+            table {
+                margin: auto;
+                width: 100%;
+                border-collapse: collapse;
+                table-layout: fixed;
+                background-color: #fff;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            }
+
+            thead {
+                background-color: #1f2937;
+                color: #ffffff;
+            }
+
+            th, td {
+                padding: 10px 6px;
+                text-align: left;
+                vertical-align: middle;
+                font-size: 14px;
+            }
+
+            th {
+                font-weight: 600;
+            }
+
+            tbody tr {
+                border-bottom: 1px solid #e5e7eb;
+            }
+
+            tbody tr:hover {
+                background-color: #f9fafb;
+            }
+
+            /* ===== Largura das colunas ===== */
+            th:nth-child(1), td:nth-child(1) { width: 80px; text-align: center; }
+            th:nth-child(2), td:nth-child(2) { width: 60px; }
+            th:nth-child(3), td:nth-child(3) { width: 130px; }
+            th:nth-child(4), td:nth-child(4) { width: 50px; }
+            th:nth-child(5), td:nth-child(5) { width: 220px; }
+            th:nth-child(6), td:nth-child(6) { width: 70px; }
+            th:nth-child(7), td:nth-child(7) { width: 200px; }
+            th:nth-child(8), td:nth-child(8) { width: 200px; }
+
+            /* ===== Imagem ===== */
+            td img {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+
+            /* ===== Missões ===== */
+            td span {
+                display: block;
+                line-height: 1.4;
+            }
+
+            /* ===== Botões ===== */
+            .actions {
+                display: flex;
+                align-items: center;   /* centraliza verticalmente */
+                gap: 10px;             /* espaço entre botões */
+                white-space: nowrap;   /* nunca quebrar linha */
+            }
+
+            .actions a {
+                text-decoration: none;
+                padding: 6px 12px;
+                border-radius: 6px;
+                font-size: 13px;
+                font-weight: 500;
+                transition: all 0.2s ease;
+            }
+
+            .btn {
+                padding: 6px 14px;
+                font-size: 14px;
+                border-radius: 6px;
+                text-decoration: none;
+                color: #fff;
+                font-weight: 500;
+                line-height: 1.2;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                transition: opacity 0.2s ease;
+            }
+
+            .btn:hover {
+                opacity: 0.9;
+            }
+
+            /* Botão ver */
+            .btn-view {
+                background-color: #2563eb;
+                color: #fff;
+            }
+
+            .actions .btn-view:hover {
+                background-color: #1d4ed8;
+            }
+
+            /* Botão editar */
+            .btn-edit {
+                background-color: #f59e0b;
+                color: #fff;
+            }
+
+            .actions .btn-edit:hover {
+                background-color: #d97706;
+            }
+
+            /* Botão deletar */
+            .btn-delete {
+                background-color: #dc2626;
+                color: #fff;
+            }
+
+            .actions .btn-delete:hover {
+                background-color: #b91c1c;
+            }
+
+            /* Botão add */
+            .btn-add {
+                background-color: #02c80a;
+                color: #fff;
+            }
+
+            .btn-add:hover {
+                background-color: #09a110;
+            }
+
+            /* Botão login */
+            .btn-login {
+                background-color: #02c80a;
+                color: #fff;
+            }
+
+            .btn-login:hover {
+                background-color: #09a110;
+            }
+
+            .btn-add-login {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 15px;
+            }
+
+        </style>
+
+    </head>
+    <body>
+        <h1 style="text-align: center">
+            Listar Ninjas
+        </h1>
+        <div class="btn-add-login">
+            <a class="btn btn-add" th:href="@{/ninjas/ui/add}">Criar Ninja</a>
+            <a class="btn btn-login" th:href="@{/ninjas/ui/loggin}">Login</a>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Imagem</th>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Idade</th>
+                    <th>Email</th>
+                    <th>Level</th>
+                    <th>Missões</th>
+                    <th>Operações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="ninja : ${ninjas}"}>
+                    <td > <img th:src="${ninja.imagemUrl}" th:alt="${ninja.nome()}"></td>
+                    <td th:text="${ninja.id}"></td>
+                    <td th:text="${ninja.nome}"></td>
+                    <td th:text="${ninja.idade}"></td>
+                    <td th:text="${ninja.email}"></td>
+                    <td th:text="${ninja.level}"></td>
+                    <td>
+                        <span th:if="${ninja.missao()}"><span th:text="${ninja.missao().getNome()}"></span> <span th:text="${ninja.missao().getRank()}"></span></span>
+                        <span th:if="${ninja.missao() == null}">Sem missão cadastrada</span>
+                    </td>
+                    <td class="actions">
+                        <a class="btn btn-view" th:href="@{/ninjas/ui/list/{id}(id=${ninja.id()})}">
+                            Ver detalhes
+                        </a>
+                        <a class="btn btn-edit" th:href="@{/ninjas/ui/update/{id}(id=${ninja.id()})}">
+                            Alterar
+                        </a>
+                        <a class="btn btn-delete" th:href="@{/ninjas/ui/delete/{id}(id=${ninja.id()})}">
+                            Deletar
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+
+
+        </table>
+    </body>
+</html>
