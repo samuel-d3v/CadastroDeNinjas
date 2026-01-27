@@ -29,4 +29,8 @@ public class MissionMapper {
                 missionModel.getNome(),
                 missionModel.getRank());
     }
+
+    public RegisterMissionRequest toRegisterDTO(RegisterMissionForm form) {
+        return new RegisterMissionRequest(form.getNome(), form.getDificuldade());
+    }
 }
