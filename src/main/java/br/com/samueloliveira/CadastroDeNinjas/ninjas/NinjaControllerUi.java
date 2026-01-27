@@ -1,6 +1,5 @@
 package br.com.samueloliveira.CadastroDeNinjas.ninjas;
 
-import br.com.samueloliveira.CadastroDeNinjas.missoes.RegisterMissionRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +21,7 @@ public class NinjaControllerUi {
     @GetMapping("/add")
     public String showFormAdd(Model model) {
         model.addAttribute("ninja", new RegisterNinjaForm());
-        return "adicionarNinja";
+        return "addNinja";
     }
 
     @PostMapping("/save")
@@ -86,7 +85,7 @@ public class NinjaControllerUi {
     /**
      * Deletes ninja by ID; returns success or not found
      */
-    @GetMapping("/delete/{id}")
+    @PostMapping("/delete/{id}")
     public String deleteNinja(@PathVariable Long id) {
         service.deleteNinja(id);
 
