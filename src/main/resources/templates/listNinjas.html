@@ -68,7 +68,7 @@
             th:nth-child(5), td:nth-child(5) { width: 220px; }
             th:nth-child(6), td:nth-child(6) { width: 70px; }
             th:nth-child(7), td:nth-child(7) { width: 200px; }
-            th:nth-child(8), td:nth-child(8) { width: 200px; }
+            th:nth-child(8), td:nth-child(8) { width: 215px; }
 
             /* ===== Imagem ===== */
             td img {
@@ -143,6 +143,7 @@
             .btn-delete {
                 background-color: #dc2626;
                 color: #fff;
+                border-style: none;
             }
 
             .actions .btn-delete:hover {
@@ -175,6 +176,10 @@
                 margin-bottom: 15px;
             }
 
+            form {
+                margin: auto;
+            }
+
         </style>
 
     </head>
@@ -201,7 +206,7 @@
             </thead>
 
             <tbody>
-                <tr th:each="ninja : ${ninjas}"}>
+                <tr th:each="ninja : ${ninjas}">
                     <td > <img th:src="${ninja.imagemUrl}" th:alt="${ninja.nome()}"></td>
                     <td th:text="${ninja.id}"></td>
                     <td th:text="${ninja.nome}"></td>
@@ -219,9 +224,10 @@
                         <a class="btn btn-edit" th:href="@{/ninjas/ui/update/{id}(id=${ninja.id()})}">
                             Alterar
                         </a>
-                        <a class="btn btn-delete" th:href="@{/ninjas/ui/delete/{id}(id=${ninja.id()})}">
-                            Deletar
-                        </a>
+
+                        <form th:action="@{/ninjas/ui/delete/{id}(id=${ninja.id()})}" method="post">
+                            <button class="btn btn-delete" type="submit">Deletar</button>
+                        </form>
                     </td>
                 </tr>
             </tbody>
