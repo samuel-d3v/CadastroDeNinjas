@@ -33,6 +33,6 @@ public class NinjaModel {
     @Column (name = "level")
     private String level;
 
-    @Column (name = "imagem_URL")
+    @Column (name = "imagem_url")
     private String imagemUrl;
 }
